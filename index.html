@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>אני לא לבד 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 600px) {
+            body {
+                padding: 20px;
+            }
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease;
+            padding: 10px;
+        }
+
+        @media (min-width: 600px) {
+            .header {
+                margin-bottom: 30px;
+                padding: 0;
+            }
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        @media (min-width: 600px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+
+        @media (min-width: 600px) {
+            .header p {
+                font-size: 1.1em;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @media (min-width: 600px) {
+            .card {
+                border-radius: 25px;
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            animation-delay: 0.1s;
+        }
+
+        .emergency-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .emergency-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        @media (min-width: 600px) {
+            .emergency-buttons {
+                gap: 10px;
+            }
+        }
+
+        .emergency-btn {
+            background: white;
+            color: #ff6b6b;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 8px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rubik', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+
+        @media (min-width: 600px) {
+            .emergency-btn {
+                border-radius: 15px;
+                padding: 15px 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        .emergency-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .emergency-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .mood-section {
+            animation-delay: 0.2s;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .mood-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+        }
+
+        .mood-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 15px;
+            padding: 10px 5px;
+            font-size: 2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 400px) {
+            .mood-btn {
+                font-size: 1.8em;
+                padding: 8px 4px;
+                border-radius: 12px;
+            }
+        }
+
+        .mood-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .mood-btn.selected {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        .encouragement-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #5a67d8;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .courage-section {
+            animation-delay: 0.3s;
+        }
+
+        .courage-counter {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .courage-number {
+            font-size: 4em;
+            font-weight: 700;
+            color: #667eea;
+            text-shadow: 2px 2px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .courage-label {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: -10px;
+        }
+
+        .star-animation {
+            display: inline-block;
+            font-size: 2em;
+            animation: rotate 2s linear infinite;
+        }
+
+        .activities-section {
+            animation-delay: 0.4s;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 400px) {
+            .activity-grid {
+                gap: 10px;
+            }
+        }
+
+        .activity-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 600px) {
+            .activity-card {
+                border-radius: 20px;
+                padding: 20px;
+            }
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .activity-card:active {
+            transform: translateY(-2px);
+        }
+
+        .activity-icon {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+        }
+
+        @media (min-width: 600px) {
+            .activity-icon {
+                font-size: 3em;
+                margin-bottom: 10px;
+            }
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #764ba2;
+            font-size: 0.95em;
+        }
+
+        @media (min-width: 600px) {
+            .activity-title {
+                font-size: 1em;
+            }
+        }
+
+        .hotline-section {
+            animation-delay: 0.5s;
+            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            color: white;
+        }
+
+        .hotline-btn {
+            background: white;
+            color: #56ab2f;
+            border: none;
+            border-radius: 15px;
+            padding: 18px;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rubik', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 10px;
+            min-height: 50px;
+            touch-action: manipulation;
+        }
+
+        .hotline-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        @media (min-width: 600px) {
+            .hotline-btn {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .hotline-btn:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            }
+        }
+
+        /* Improve touch targets */
+        button, .mood-btn, .emergency-btn, .activity-card, .contact-remove {
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            touch-action: manipulation;
+        }
+
+        /* Prevent text selection on buttons */
+        button, .mood-btn, .emergency-btn {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .breathing-exercise {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 126, 234, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .breathing-exercise.active {
+            display: flex;
+        }
+
+        .breathing-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 50px rgba(255,255,255,0.5);
+            transform: scale(1);
+            transition: transform 4s ease-in-out;
+        }
+
+        .breathing-text {
+            color: white;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.15); }
+            50% { transform: scale(1.25); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+            font-size: 2em;
+            animation: floatUp 3s ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(1.5);
+            }
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-name {
+            font-weight: 600;
+            color: #764ba2;
+            font-size: 1.1em;
+            margin-bottom: 3px;
+        }
+
+        .contact-phone {
+            color: #666;
+            font-size: 0.9em;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .contact-remove {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-remove:hover {
+            background: #ff5252;
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @media (max-width: 400px) {
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+                border-radius: 20px;
+            }
+        }
+
+        .modal-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 400px) {
+            .modal-title {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: 'Rubik', sans-serif;
+            margin-bottom: 15px;
+            direction: rtl;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 400px) {
+            .form-input {
+                padding: 10px;
+                font-size: 0.95em;
+                margin-bottom: 12px;
+            }
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 400px) {
+            .modal-buttons {
+                gap: 8px;
+                margin-top: 15px;
+            }
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Rubik', sans-serif;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        @media (max-width: 400px) {
+            .modal-btn {
+                padding: 10px;
+                font-size: 0.95em;
+                min-width: 80px;
+            }
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💙 אני לא לבד 💙</h1>
+            <p>אתה לא לבד, אנחנו איתך! 🌟</p>
+        </div>
+
+        <!-- Emergency Contacts Setup -->
+        <div class="card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); animation-delay: 0.05s;">
+            <div class="section-title" style="color: #764ba2;">👨‍👩‍👧 אנשי קשר לשעת חירום</div>
+            <p style="text-align: center; color: #764ba2; margin-bottom: 15px;">
+                הגדירו מי יקבל התראה כשאתם צריכים עזרה
+            </p>
+            <div id="contactsList" style="margin-bottom: 15px;">
+                <!-- Contacts will be added here -->
+            </div>
+            <button class="hotline-btn" onclick="addEmergencyContact()" style="background: #764ba2; color: white; margin-top: 10px;">
+                ➕ הוסף איש קשר
+            </button>
+        </div>
+
+        <!-- Emergency Buttons Section -->
+        <div class="card emergency-section">
+            <div class="emergency-title">🚨 כפתורי חירום 🚨</div>
+            <p style="text-align: center; margin-bottom: 15px; font-size: 0.9em;">
+                לחיצה תשלח התראה לאנשי הקשר שלך ותחייג למספר החירום
+            </p>
+            <div class="emergency-buttons">
+                <button class="emergency-btn" onclick="callEmergency('police')">
+                    👮<br>משטרה<br>100
+                </button>
+                <button class="emergency-btn" onclick="callEmergency('mada')">
+                    🚑<br>מד"א<br>101
+                </button>
+                <button class="emergency-btn" onclick="callEmergency('fire')">
+                    🚒<br>כיבוי אש<br>102
+                </button>
+            </div>
+        </div>
+
+        <!-- Mood Tracker -->
+        <div class="card mood-section">
+            <div class="section-title">איך אתה מרגיש היום? 🎭</div>
+            <div class="mood-grid">
+                <button class="mood-btn" onclick="selectMood(this, '😊')">😊</button>
+                <button class="mood-btn" onclick="selectMood(this, '😢')">😢</button>
+                <button class="mood-btn" onclick="selectMood(this, '😠')">😠</button>
+                <button class="mood-btn" onclick="selectMood(this, '😰')">😰</button>
+                <button class="mood-btn" onclick="selectMood(this, '🤗')">🤗</button>
+                <button class="mood-btn" onclick="selectMood(this, '😔')">😔</button>
+                <button class="mood-btn" onclick="selectMood(this, '🥺')">🥺</button>
+                <button class="mood-btn" onclick="selectMood(this, '💪')">💪</button>
+            </div>
+            <div class="encouragement-box" id="encouragementBox">
+                בחר איך אתה מרגיש ותקבל מסר מיוחד 💌
+            </div>
+        </div>
+
+        <!-- Courage Points -->
+        <div class="card courage-section">
+            <div class="section-title">נקודות האומץ שלך! <span class="star-animation">⭐</span></div>
+            <div class="courage-counter">
+                <div class="courage-number" id="couragePoints">0</div>
+                <div class="courage-label">נקודות אומץ</div>
+            </div>
+            <button class="hotline-btn" onclick="addCouragePoint()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                היה לי יום מאתגר אבל עברתי אותו! 💪
+            </button>
+        </div>
+
+        <!-- Activities -->
+        <div class="card activities-section">
+            <div class="section-title">פעילויות שיעזרו לך 🌈</div>
+            <div class="activity-grid">
+                <div class="activity-card" onclick="startBreathing()">
+                    <div class="activity-icon">🌬️</div>
+                    <div class="activity-title">תרגיל נשימה</div>
+                </div>
+                <div class="activity-card" onclick="showStory()">
+                    <div class="activity-icon">📖</div>
+                    <div class="activity-title">סיפור מעודד</div>
+                </div>
+                <div class="activity-card" onclick="showGame()">
+                    <div class="activity-icon">🎮</div>
+                    <div class="activity-title">משחק כיף</div>
+                </div>
+                <div class="activity-card" onclick="showTips()">
+                    <div class="activity-icon">💡</div>
+                    <div class="activity-title">טיפים</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotline -->
+        <div class="card hotline-section">
+            <div class="section-title">צריך לדבר עם מישהו? 💬</div>
+            <p style="text-align: center; margin-bottom: 10px;">ער"ן - עזרה ראשונה נפשית</p>
+            <button class="hotline-btn" onclick="callHotline()">
+                📞 חייג לער"ן - 1201
+            </button>
+            <button class="hotline-btn" onclick="whatsappEran()" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; margin-top: 10px;">
+                💬 שלח הודעה בוואטסאפ לער"ן
+            </button>
+            <p style="text-align: center; margin-top: 10px; font-size: 0.9em;">זמינים 24/7 לשיחה • אתה לא לבד!</p>
+        </div>
+
+        <!-- Emergency WhatsApp Alert -->
+        <div class="card" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%); animation-delay: 0.6s;">
+            <div class="section-title" style="color: white;">⚡ התראת חירום מיידית</div>
+            <p style="text-align: center; color: white; margin-bottom: 15px; font-weight: 500;">
+                שליחת הודעת WhatsApp מיידית לכל אנשי הקשר שהגדרת
+            </p>
+            <button class="hotline-btn" onclick="sendEmergencyWhatsApp()" style="background: white; color: #FF6B6B; font-weight: 700; font-size: 1.1em;">
+                🚨 שלח התראת חירום עכשיו!
+            </button>
+        </div>
+    </div>
+
+    <!-- Breathing Exercise Overlay -->
+    <div class="breathing-exercise" id="breathingExercise">
+        <button class="close-btn" onclick="stopBreathing()">✕</button>
+        <div class="breathing-circle" id="breathingCircle"></div>
+        <div class="breathing-text" id="breathingText">התכונן...</div>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-title">➕ הוספת איש קשר</div>
+            <input type="text" id="contactName" class="form-input" placeholder="שם (לדוגמה: אמא, אבא, אחות)">
+            <input type="tel" id="contactPhone" class="form-input" placeholder="מספר טלפון (לדוגמה: 050-1234567)" dir="ltr">
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-primary" onclick="saveContact()">💾 שמור</button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeContactModal()">✕ ביטול</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Modal (for stories, games, tips) -->
+    <div class="modal" id="contentModal">
+        <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+            <button class="close-btn" onclick="closeContentModal()" style="position: absolute; top: 15px; left: 15px; width: 40px; height: 40px; font-size: 1.2em;">✕</button>
+            <div id="contentTitle" class="modal-title" style="margin-top: 10px;"></div>
+            <div id="contentBody" style="text-align: right; line-height: 1.8; white-space: pre-wrap; padding: 10px; font-size: 1.05em;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load courage points from localStorage
+        let couragePoints = parseInt(localStorage.getItem('couragePoints') || '0');
+        document.getElementById('couragePoints').textContent = couragePoints;
+
+        // Emergency Contacts Management
+        let emergencyContacts = JSON.parse(localStorage.getItem('emergencyContacts') || '[]');
+
+        // Display emergency contacts on load
+        displayContacts();
+
+        function displayContacts() {
+            const contactsList = document.getElementById('contactsList');
+            if (emergencyContacts.length === 0) {
+                contactsList.innerHTML = '';
+                return;
+            }
+            
+            contactsList.innerHTML = emergencyContacts.map((contact, index) => `
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <div class="contact-name">${contact.name}</div>
+                        <div class="contact-phone">${contact.phone}</div>
+                    </div>
+                    <button class="contact-remove" onclick="removeContact(${index})">🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        function addEmergencyContact() {
+            document.getElementById('contactModal').classList.add('active');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+        }
+
+        function saveContact() {
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            
+            if (!name || !phone) {
+                alert('⚠️ נא למלא את כל השדות');
+                return;
+            }
+            
+            emergencyContacts.push({ name, phone });
+            localStorage.setItem('emergencyContacts', JSON.stringify(emergencyContacts));
+            displayContacts();
+            closeContactModal();
+            
+            alert('✅ איש הקשר נשמר בהצלחה!\n\n' + 
+                  'כעת כשתלחץ על כפתור חירום, ' + name + ' יקבל הודעת WhatsApp! 💙');
+        }
+
+        function removeContact(index) {
+            if (confirm('האם אתה בטוח שברצונך למחוק את איש הקשר?')) {
+                emergencyContacts.splice(index, 1);
+                localStorage.setItem('emergencyContacts', JSON.stringify(emergencyContacts));
+                displayContacts();
+            }
+        }
+
+        function sendWhatsAppAlert(emergencyType) {
+            if (emergencyContacts.length === 0) {
+                return; // No contacts to notify
+            }
+            
+            const emergencyNames = {
+                police: 'משטרה (100)',
+                mada: 'מד"א (101)',
+                fire: 'כיבוי אש (102)'
+            };
+            
+            const message = `🚨 התראת חירום! 🚨%0A%0A` +
+                          `הילד/ה שלכם לחץ על כפתור החירום:%0A` +
+                          `${emergencyNames[emergencyType]}%0A%0A` +
+                          `⚠️ אנא התקשרו אליו/ה מיד!%0A` +
+                          `📅 ${new Date().toLocaleString('he-IL')}%0A%0A` +
+                          `נשלח מ: אני לא לבד 💙`;
+            
+            // Open WhatsApp for each contact
+            emergencyContacts.forEach((contact, index) => {
+                setTimeout(() => {
+                    const whatsappUrl = `https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${message}`;
+                    window.open(whatsappUrl, '_blank');
+                }, index * 1000); // Delay between contacts
+            });
+        }
+
+        function callEmergency(type) {
+            const numbers = {
+                police: '100',
+                mada: '101',
+                fire: '102'
+            };
+            
+            const emergencyNames = {
+                police: 'משטרה',
+                mada: 'מד"א',
+                fire: 'כיבוי אש'
+            };
+            
+            // Send WhatsApp alerts to emergency contacts
+            sendWhatsAppAlert(type);
+            
+            // Show notification
+            if (emergencyContacts.length > 0) {
+                alert(`📱 הודעת WhatsApp נשלחה לאנשי הקשר שלך!\n\n` +
+                      `🚨 כעת מחייג ל${emergencyNames[type]}...`);
+            }
+            
+            // Direct call to emergency number
+            window.location.href = `tel:${numbers[type]}`;
+        }
+
+        function callHotline() {
+            // Direct call to ERAN hotline
+            window.location.href = 'tel:1201';
+        }
+
+        function whatsappEran() {
+            // WhatsApp to ERAN
+            const eranNumber = '972528451201'; // 052-845-1201 in international format
+            const message = `שלום, אני צריך/ה עזרה ותמיכה רגשית.`;
+            const whatsappUrl = `https://wa.me/${eranNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendEmergencyWhatsApp() {
+            if (emergencyContacts.length === 0) {
+                alert('⚠️ לא הגדרת אנשי קשר לחירום!\n\nאנא הוסף אנשי קשר קודם.');
+                return;
+            }
+            
+            if (!confirm('🚨 האם לשלוח התראת חירום לכל אנשי הקשר?\n\nהם יקבלו הודעה שאתה צריך עזרה מיידית!')) {
+                return;
+            }
+            
+            const message = `🚨 התראת חירום! 🚨%0A%0A` +
+                          `הילד/ה שלכם שלח התראת חירום!%0A%0A` +
+                          `⚠️ אנא התקשרו אליו/ה מיד!%0A` +
+                          `📅 ${new Date().toLocaleString('he-IL')}%0A%0A` +
+                          `💙 נשלח מ: אני לא לבד`;
+            
+            let successCount = 0;
+            emergencyContacts.forEach((contact, index) => {
+                setTimeout(() => {
+                    const phone = contact.phone.replace(/[^0-9]/g, '');
+                    const phoneFormatted = phone.startsWith('0') ? '972' + phone.substring(1) : phone;
+                    const whatsappUrl = `https://wa.me/${phoneFormatted}?text=${message}`;
+                    window.open(whatsappUrl, '_blank');
+                    successCount++;
+                    
+                    if (index === emergencyContacts.length - 1) {
+                        setTimeout(() => {
+                            alert(`✅ נשלחו ${successCount} הודעות חירום!\n\nאנשי הקשר שלך קיבלו התראה! 💙`);
+                        }, 1000);
+                    }
+                }, index * 1500);
+            });
+        }
+
+        // Mood messages
+        const moodMessages = {
+            '😊': 'כל הכבוד! ממשיך ככה! אתה מדהים! 🌟',
+            '😢': 'זה בסדר להיות עצוב. אתה חזק יותר ממה שאתה חושב 💙',
+            '😠': 'כעס זה רגש תקין. נשום עמוק ונשחרר 🌊',
+            '😰': 'אתה לא לבד. אנחנו כאן בשבילך תמיד 🤗',
+            '🤗': 'איזה כיף! חיבוק גדול בחזרה! 💕',
+            '😔': 'ימים קשים עוברים. אתה אמיץ ונפלא 🌈',
+            '🥺': 'אתה נפלא בדיוק כמו שאתה. זכור את זה! ⭐',
+            '💪': 'וואו! איזה כוח! אתה לוחם אמיתי! 🦁'
+        };
+
+        function selectMood(button, mood) {
+            // Remove previous selection
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Select current
+            button.classList.add('selected');
+            
+            // Show message
+            const box = document.getElementById('encouragementBox');
+            box.textContent = moodMessages[mood];
+            box.style.animation = 'none';
+            setTimeout(() => {
+                box.style.animation = 'fadeIn 0.5s ease';
+            }, 10);
+            
+            // Add courage point
+            addCouragePoint();
+            
+            // Create floating hearts
+            createFloatingHearts();
+        }
+
+        function addCouragePoint() {
+            couragePoints++;
+            localStorage.setItem('couragePoints', couragePoints);
+            document.getElementById('couragePoints').textContent = couragePoints;
+            
+            // Animate number
+            const numberEl = document.getElementById('couragePoints');
+            numberEl.style.animation = 'none';
+            setTimeout(() => {
+                numberEl.style.animation = 'pulse 0.5s ease';
+            }, 10);
+        }
+
+        function createFloatingHearts() {
+            const hearts = ['💙', '💜', '💚', '💛', '🧡', '❤️'];
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-hearts';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = window.innerHeight + 'px';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 200);
+            }
+        }
+
+        // Breathing Exercise
+        let breathingInterval;
+        function startBreathing() {
+            const exercise = document.getElementById('breathingExercise');
+            const circle = document.getElementById('breathingCircle');
+            const text = document.getElementById('breathingText');
+            
+            exercise.classList.add('active');
+            
+            // התחל מגודל קטן
+            circle.style.transform = 'scale(1)';
+            circle.style.transition = 'none';
+            
+            let phase = 0;
+            const phases = [
+                { text: 'שאף פנימה... 1...2...3...4', duration: 4000, scale: 1.3, animate: true },      // גדל לאט
+                { text: 'עצור... 1...2...3...4', duration: 4000, scale: 1.3, animate: false },          // נשאר גדול
+                { text: 'נשוף החוצה... 1...2...3...4', duration: 4000, scale: 1, animate: true },       // קטן לאט
+                { text: 'עצור... 1...2', duration: 2000, scale: 1, animate: false }                     // נשאר קטן
+            ];
+            
+            function runPhase() {
+                const currentPhase = phases[phase];
+                text.textContent = currentPhase.text;
+                
+                // אם צריך אנימציה - הוסף transition
+                if (currentPhase.animate) {
+                    circle.style.transition = 'transform 4s ease-in-out';
+                } else {
+                    circle.style.transition = 'none';
+                }
+                
+                // שנה את הגודל
+                setTimeout(() => {
+                    circle.style.transform = `scale(${currentPhase.scale})`;
+                }, 10);
+                
+                setTimeout(() => {
+                    phase = (phase + 1) % phases.length;
+                    if (document.getElementById('breathingExercise').classList.contains('active')) {
+                        runPhase();
+                    }
+                }, currentPhase.duration);
+            }
+            
+            runPhase();
+        }
+
+        function stopBreathing() {
+            document.getElementById('breathingExercise').classList.remove('active');
+            const circle = document.getElementById('breathingCircle');
+            circle.style.transform = 'scale(1)';
+            circle.style.transition = 'none';
+        }
+
+        function showStory() {
+            const stories = [
+                {
+                    title: '📖 סיפור על דני',
+                    content: `דני היה ילד בן 11 שחווה חרם בכיתה. הוא חשב שהוא לבד, אבל גילה שיש עוד ילדים שעוברים את זה.
+
+בהתחלה, דני היה עצוב מאוד. הוא לא הבין למה זה קורה לו. אבל יום אחד, המורה שלו שמה לב שהוא יושב לבד בהפסקה.
+
+המורה דיברה איתו ועזרה לו להבין שזה לא באשמתו. דני התחיל להתמקד בדברים שהוא אוהב - ציור ומוזיקה.
+
+הוא הצטרף למועדון האמנות בבית הספר ומצא שם ילדים אחרים עם תחומי עניין דומים. אט אט, הוא מצא חברים חדשים שהעריכו אותו.
+
+היום, דני בן 16 והוא עוזר לילדים אחרים שעוברים חרם. הוא למד שהכוח שלו הוא בייחודיות שלו!
+
+🌟 גם אתה תעבור את זה! אתה חזק ונפלא! 💪`
+                },
+                {
+                    title: '📖 סיפור על מיה',
+                    content: `מיה הייתה ילדה חכמה ומיוחדת בכיתה ח'. יום אחד, בלי סיבה ברורה, הילדים בכיתה התחילו להתעלם ממנה.
+
+מיה הרגישה מאוד לבד ועצובה. היא לא רצתה ללכת לבית הספר. אבל האמא שלה עזרה לה להבין שהיא לא לבד.
+
+מיה התחילה לכתוב יומן על הרגשות שלה. זה עזר לה להוציא את הכעס והעצב. היא גם דיברה עם יועצת בית הספר.
+
+היא מצאה כוח בתחביבים שלה - קריאה וכתיבה. היא אפילו התחילה לכתוב סיפורים משלה!
+
+היום מיה היא סופרת מצליחה שכותבת ספרים לבני נוער. היא אומרת: "החרם עזר לי להכיר את עצמי ולהבין מה באמת חשוב לי."
+
+💜 זכור: הקושי שלך היום יהפוך לכוח שלך מחר! 💜`
+                }
+            ];
+            
+            const story = stories[Math.floor(Math.random() * stories.length)];
+            showContent(story.title, story.content);
+        }
+
+        function showGame() {
+            const games = [
+                {
+                    title: '🎮 משחק: ספור את הכוכבים!',
+                    content: `⭐⭐⭐⭐⭐⭐⭐
+
+כמה כוכבים ראית? 7!
+
+כל כוכב מייצג דבר נפלא שיש בך:
+
+⭐ אתה אמיץ - כי אתה ממשיך כל יום
+⭐ אתה חכם - יש לך מוח מדהים
+⭐ אתה מיוחד - אין אף אחד כמוך
+⭐ אתה חזק - עברת ימים קשים
+⭐ אתה נפלא - בדיוק כמו שאתה
+⭐ יש לך לב טוב - אתה אדם טוב
+⭐ יש לך עתיד מזהיר - זה רק התחלה
+
+זכור את הכוכבים האלה כל יום! 💙`
+                },
+                {
+                    title: '🎮 משחק: מצא את המילה החיובית!',
+                    content: `בתוך המילים האלה יש מילה מיוחדת בשבילך:
+
+🌟 אמיץ
+🌟 מוכשר
+🌟 חכם
+🌟 יפה
+🌟 מצחיק
+🌟 יצירתי
+🌟 טוב לב
+🌟 נפלא
+
+איזו מילה מתארת אותך הכי טוב?
+
+💡 הסוד: כל המילים מתארות אותך!
+
+אתה כל אלה וגם יותר! 🌈`
+                }
+            ];
+            
+            const game = games[Math.floor(Math.random() * games.length)];
+            showContent(game.title, game.content);
+        }
+
+        function showTips() {
+            const content = `1. 🗣️ דבר עם מבוגר שאתה סומך עליו
+   ההורים, המורה, או היועצת - הם רוצים לעזור!
+
+2. 📔 כתוב יומן רגשות
+   תכתוב איך אתה מרגיש - זה עוזר להוציא את הרגשות
+
+3. 🎨 תמצא תחביב שאתה אוהב
+   ציור, מוזיקה, ספורט - משהו שעושה אותך שמח
+
+4. 💭 תזכור - זה לא באשמתך!
+   אתה לא עשית שום דבר רע. הבעיה היא אצל האחרים
+
+5. 🌟 תהיה גאה בעצמך כל יום
+   תמצא משהו אחד טוב שעשית היום
+
+6. 🌬️ תנשום עמוק כשקשה
+   נשימות עמוקות עוזרות להרגיע
+
+7. 👥 תחפש חברים במקומות אחרים
+   מועדונים, פעילויות, שכונה - יש עוד ילדים טובים!
+
+8. 📞 תדבר עם ער"ן אם קשה
+   חייג 1201 - הם שם בשבילך תמיד
+
+9. 💪 תזכור שאתה חזק
+   כל יום שאתה עובר הוא הוכחה לכוח שלך
+
+10. 🌈 תזכור - זה יעבור!
+    המצב הזה זמני. יבואו ימים טובים!
+
+אתה לא לבד! 💙`;
+            
+            showContent('💡 10 טיפים שיעזרו לך', content);
+        }
+
+        function showContent(title, content) {
+            document.getElementById('contentTitle').textContent = title;
+            document.getElementById('contentBody').textContent = content;
+            document.getElementById('contentModal').classList.add('active');
+        }
+
+        function closeContentModal() {
+            document.getElementById('contentModal').classList.remove('active');
+        }
+
+        // Prevent page unload while breathing
+        window.addEventListener('beforeunload', (e) => {
+            if (document.getElementById('breathingExercise').classList.contains('active')) {
+                e.preventDefault();
+                e.returnValue = '';
+                return 'תרגיל הנשימה עדיין פעיל';
+            }
+        });
+    </script>
+</body>
+</html>
